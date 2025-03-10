@@ -5,8 +5,8 @@ export type Menu = {
   MenuSections: MenuSection[];
   MenuSectionBehaviour: 1;
   DisplaySectionLinks: boolean;
-  ConcessionStores: string[] // unsure
-}
+  ConcessionStores: string[]; // unsure
+};
 
 export type MenuSection = {
   MenuSectionId: number;
@@ -78,8 +78,8 @@ export type MenuItemOptionSet = {
   CellLayoutType: number;
   MinPrice: number;
   MenuItemId: number;
-  MenuItemOptionSetMetaData: string[] // who knows
-}
+  MenuItemOptionSetMetaData: string[]; // who knows
+};
 
 export type MenuItemOptionSetItem = {
   MenuItemOptionSetItemId: number;
@@ -99,4 +99,4 @@ export type MenuItemOptionSetItem = {
   CellAspectRatio: number;
   CellLayoutType: number;
   OptionSetItemMetadata: string[];
-}
+};

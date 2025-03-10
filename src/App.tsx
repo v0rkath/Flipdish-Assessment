@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+
 import "./App.css";
-import { MenuSection } from "./components/MenuSection";
+
+import { Item } from "./components/Item";
+import { Section } from "./components/Section";
 import { Menu } from "./types";
-import { MenuSectionItems } from "./components/MenuSectionItems";
 import { sortByOrder } from "./utils/sorting";
 
 function App() {
@@ -22,15 +24,15 @@ function App() {
 
   return (
     <main className="flex flex-col">
-      <h1 className="text-2xl mb-8">Menu</h1>
+      <h1 className="mb-8 text-2xl">Menu</h1>
       {menu &&
         menu.MenuSections.map((section) => {
           return (
-            <MenuSection key={section.MenuSectionId} name={section.Name}>
-              {section.MenuItems.map((item) => {
-                return <MenuSectionItems key={item.MenuItemId} {...item} />;
-              })}
-            </MenuSection>
+            <Section key={section.MenuSectionId} section={section}>
+              {section.MenuItems.map((item) => (
+                <Item key={item.PublicId} item={item} />
+              ))}
+            </Section>
           );
         })}
     </main>
