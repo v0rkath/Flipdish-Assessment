@@ -27,7 +27,7 @@ export type MenuSection = {
   MenuSectionMetadata: string[]; // this might be wrong
 };
 
-export type MenuItem = {
+type MenuItem = {
   MenuItemId: number;
   Name: string;
   Description: string;
@@ -81,7 +81,7 @@ export type MenuItemOptionSet = {
   MenuItemOptionSetMetaData: string[]; // who knows
 };
 
-export type MenuItemOptionSetItem = {
+type MenuItemOptionSetItem = {
   MenuItemOptionSetItemId: number;
   Name: string;
   Price: number;

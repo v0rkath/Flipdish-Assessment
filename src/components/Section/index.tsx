@@ -1,4 +1,4 @@
-import { MenuSection } from "@/types";
+import { MenuSection } from "@/types/types";
 
 type Props = {
   children: React.ReactNode;
