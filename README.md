@@ -3,7 +3,7 @@
 A responsive menu application utilising a mock API provided by Flipdish.
 
 <h4 align="center">
-    <a href="https://clearscore-idea-board.vercel.app" target="_blank">Demo</a>
+    <a href="https://flipdish-assessment.vercel.app" target="_blank">Demo</a>
 </h4>
 
 <p align="center">
