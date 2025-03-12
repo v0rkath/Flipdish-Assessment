@@ -25,6 +25,4 @@ describe("Item tests", () => {
     expect(screen.getByText("Description")).toBeInTheDocument();
     expect(screen.getByText("£5.00")).toBeInTheDocument();
   });
-
-  it("should", () => {});
 });

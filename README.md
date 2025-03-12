@@ -4,6 +4,7 @@ A responsive menu application utilising a mock API provided by Flipdish.
 
 <h4 align="center">
     <a href="https://clearscore-idea-board.vercel.app" target="_blank">Demo</a>
+    <img src="https://github.com/https://github.com/v0rkath/Flipdish-Assessment/blob/main/images/flipdish-assessment.png"/>
 </h4>
 
 ![Flipdish assessment](./images/flipdish-assessment.png)
