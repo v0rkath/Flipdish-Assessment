@@ -2,6 +2,10 @@
 
 A responsive menu application utilising a mock API provided by Flipdish.
 
+<h4 align="center">
+    <a href="https://clearscore-idea-board.vercel.app" target="_blank">Demo</a>
+</h4>
+
 ![Flipdish assessment](./images/flipdish-assessment.png)
 
 ## Information
@@ -13,6 +17,7 @@ A technical assessment provided by Flipdish to utilise an example API to provide
 - Menu to contain sections (Mains, Desserts etc.) and items within those sections.
 - Show the following if the API provides them: name, image, description and price.
 - Conditional rendering of items depending on whether the options provided are to be standalone or not.
+- Responsive design for both mobile and desktop.
 
 ## Installation
 

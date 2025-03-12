@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import "./App.css";
 
@@ -23,6 +23,7 @@ function App() {
   return (
     <main className="flex flex-col">
       <h1 className="mb-8 text-4xl">Menu</h1>
+      <Suspense fallback={<h2>Loading Menu...</h2>}>
       {menu &&
         menu.MenuSections.map((section) => {
           return (
@@ -60,6 +61,7 @@ function App() {
             </Section>
           );
         })}
+        </Suspense>
     </main>
   );
 }
