@@ -4,7 +4,7 @@ import "./App.css";
 
 import { Item } from "./components/Item";
 import { Section } from "./components/Section";
-import { Menu, MenuItemOptionSet } from "./types/types";
+import { Menu, MenuItemOptionSet } from "./types";
 
 function App() {
   const [menu, setMenu] = useState<Menu | null>(null);
@@ -24,44 +24,44 @@ function App() {
     <main className="flex flex-col">
       <h1 className="mb-8 text-4xl">Menu</h1>
       <Suspense fallback={<h2>Loading Menu...</h2>}>
-      {menu &&
-        menu.MenuSections.map((section) => {
-          return (
-            <Section key={section.MenuSectionId} section={section}>
-              {section.MenuItems.map((item) => {
-                const standalone: MenuItemOptionSet | undefined =
-                  item.MenuItemOptionSets.find(
-                    (option: MenuItemOptionSet) => option.IsMasterOptionSet,
-                  );
+        {menu &&
+          menu.MenuSections.map((section) => {
+            return (
+              <Section key={section.MenuSectionId} section={section}>
+                {section.MenuItems.map((item) => {
+                  const standalone: MenuItemOptionSet | undefined =
+                    item.MenuItemOptionSets.find(
+                      (option: MenuItemOptionSet) => option.IsMasterOptionSet,
+                    );
 
-                if (standalone) {
-                  return standalone.MenuItemOptionSetItems.map((option) => (
+                  if (standalone) {
+                    return standalone.MenuItemOptionSetItems.map((option) => (
+                      <Item
+                        key={option.PublicId}
+                        name={`${item.Name} (${option.Name})`}
+                        description={item.Description}
+                        price={option.Price}
+                        imageUrl={
+                          option.ImageUrl ? option.ImageUrl : item.ImageUrl
+                        }
+                      />
+                    ));
+                  }
+
+                  return (
                     <Item
-                      key={option.PublicId}
-                      name={`${item.Name} (${option.Name})`}
+                      key={item.PublicId}
+                      name={item.Name}
                       description={item.Description}
-                      price={option.Price}
-                      imageUrl={
-                        option.ImageUrl ? option.ImageUrl : item.ImageUrl
-                      }
+                      price={item.Price}
+                      imageUrl={item.ImageUrl}
                     />
-                  ));
-                }
-
-                return (
-                  <Item
-                    key={item.PublicId}
-                    name={item.Name}
-                    description={item.Description}
-                    price={item.Price}
-                    imageUrl={item.ImageUrl}
-                  />
-                );
-              })}
-            </Section>
-          );
-        })}
-        </Suspense>
+                  );
+                })}
+              </Section>
+            );
+          })}
+      </Suspense>
     </main>
   );
 }
