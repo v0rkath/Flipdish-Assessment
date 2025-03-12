@@ -1,24 +1,30 @@
-import {describe, expect, it} from "vitest";
-import { render, screen } from "@testing-library/react"
+import { describe, expect, it } from "vitest";
+import { render, screen } from "@testing-library/react";
+
 import { Item } from ".";
 
 const itemProps = {
-    name: "Name",
-    description: "Description",
-    price: 5.00,
-    imageUrl: "string"
-}
+  name: "Name",
+  description: "Description",
+  price: 5.0,
+  imageUrl: "string",
+};
 
-describe('Item tests', () => {
-    it('should render item details', () => {
-        render(<Item name={itemProps.name} description={itemProps.description} price={itemProps.price} imageUrl={itemProps.imageUrl} />);
+describe("Item tests", () => {
+  it("should render item details", () => {
+    render(
+      <Item
+        name={itemProps.name}
+        description={itemProps.description}
+        price={itemProps.price}
+        imageUrl={itemProps.imageUrl}
+      />,
+    );
 
-        expect(screen.getByText("Name")).toBeInTheDocument();
-        expect(screen.getByText("Description")).toBeInTheDocument();
-        expect(screen.getByText("£5.00")).toBeInTheDocument();
-    });
+    expect(screen.getByText("Name")).toBeInTheDocument();
+    expect(screen.getByText("Description")).toBeInTheDocument();
+    expect(screen.getByText("£5.00")).toBeInTheDocument();
+  });
 
-    it('should', () => {
-        
-    })
-})
+  it("should", () => {});
+});
