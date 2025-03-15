@@ -5,7 +5,12 @@ type Props = {
   imageUrl: string;
 };
 
-export function Item({ name, description, price, imageUrl }: Props) {
+export function MenuItem({ name, description, price, imageUrl }: Props) {
+  const priceFormat = Intl.NumberFormat("en", {
+    style: "currency",
+    currency: "GBP",
+  }).format(price);
+
   return (
     <div className="cursor-pointer rounded border-b border-b-slate-300 p-4 hover:bg-slate-100">
       <div className="flex justify-between">
@@ -17,9 +22,7 @@ export function Item({ name, description, price, imageUrl }: Props) {
           </div>
         </div>
         <div className="flex flex-col justify-center gap-2 text-right">
-          <p className="text-lg font-semibold text-blue-500">
-            £{price.toFixed(2)}
-          </p>
+          <p className="text-lg font-semibold text-blue-500">{priceFormat}</p>
         </div>
       </div>
     </div>

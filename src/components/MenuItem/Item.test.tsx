@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 
-import { Item } from ".";
+import { MenuItem } from ".";
 
 const itemProps = {
   name: "Name",
@@ -13,7 +13,7 @@ const itemProps = {
 describe("Item tests", () => {
   it("should render item details", () => {
     render(
-      <Item
+      <MenuItem
         name={itemProps.name}
         description={itemProps.description}
         price={itemProps.price}

@@ -4,6 +4,7 @@ import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 import js from "@eslint/js";
+import tanstackQuery from "@tanstack/eslint-plugin-query";
 
 export default tseslint.config(
   { ignores: ["dist"] },
@@ -17,6 +18,7 @@ export default tseslint.config(
     plugins: {
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "@tanstack/query": tanstackQuery,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
@@ -25,6 +27,10 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "no-console": "warn",
+      "@tanstack/query/exhaustive-deps": "error",
+      "@tanstack/query/no-deprecated-options": "error",
+      "@tanstack/query/prefer-query-object-syntax": "error",
+      "@tanstack/query/stable-query-client": "error",
     },
   },
 );

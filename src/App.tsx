@@ -1,69 +1,66 @@
-import { Suspense, useEffect, useState } from "react";
-
 import "./App.css";
 
-import { Item } from "./components/Item";
-import { Section } from "./components/Section";
+import { useQuery } from "@tanstack/react-query";
+
+import { MenuItem } from "./components/MenuItem";
 import { Menu, MenuItemOptionSet } from "./types";
 
 function App() {
-  const [menu, setMenu] = useState<Menu | null>(null);
+  const { isPending, error, data } = useQuery({
+    queryKey: ["menuData"],
+    queryFn: fetchAPIData,
+  });
 
-  useEffect(() => {
-    fetch(
-      "https://menus.flipdish.co/prod/16798/e6220da2-c34a-4ea2-bb51-a3e190fc5f08.json",
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setMenu(data);
-      })
-      .catch((error) => new Error(error.message));
-  }, []);
+  if (isPending) return <p>Loading Menu...</p>;
+  if (error) return <p>An error has occurred: ${error.message}</p>;
 
   return (
     <main className="flex flex-col">
       <h1 className="mb-8 text-4xl">Menu</h1>
-      <Suspense fallback={<h2>Loading Menu...</h2>}>
-        {menu &&
-          menu.MenuSections.map((section) => {
-            return (
-              <Section key={section.MenuSectionId} section={section}>
-                {section.MenuItems.map((item) => {
-                  const standalone: MenuItemOptionSet | undefined =
-                    item.MenuItemOptionSets.find(
-                      (option: MenuItemOptionSet) => option.IsMasterOptionSet,
-                    );
-
-                  if (standalone) {
-                    return standalone.MenuItemOptionSetItems.map((option) => (
-                      <Item
-                        key={option.PublicId}
-                        name={`${item.Name} (${option.Name})`}
-                        description={item.Description}
-                        price={option.Price}
-                        imageUrl={
-                          option.ImageUrl ? option.ImageUrl : item.ImageUrl
-                        }
-                      />
-                    ));
-                  }
-
-                  return (
-                    <Item
-                      key={item.PublicId}
-                      name={item.Name}
-                      description={item.Description}
-                      price={item.Price}
-                      imageUrl={item.ImageUrl}
-                    />
+        {data.MenuSections.map((section) => {
+          return (
+            <div className="mt-12 text-left" key={section.MenuSectionId}>
+              <h2 className="mb-6 text-xl font-semibold">{section.Name}</h2>
+              {section.MenuItems.map((item) => {
+                const standalone: MenuItemOptionSet | undefined =
+                  item.MenuItemOptionSets.find(
+                    (option: MenuItemOptionSet) => option.IsMasterOptionSet,
                   );
-                })}
-              </Section>
-            );
-          })}
-      </Suspense>
+
+                if (standalone) {
+                  return standalone.MenuItemOptionSetItems.map((option) => (
+                    <MenuItem
+                      key={option.PublicId}
+                      name={`${item.Name} (${option.Name})`}
+                      description={item.Description}
+                      price={option.Price}
+                      imageUrl={option.ImageUrl || item.ImageUrl}
+                    />
+                  ));
+                }
+
+                return (
+                  <MenuItem
+                    key={item.PublicId}
+                    name={item.Name}
+                    description={item.Description}
+                    price={item.Price}
+                    imageUrl={item.ImageUrl}
+                  />
+                );
+              })}
+            </div>
+          );
+        })}
     </main>
   );
+}
+
+async function fetchAPIData(): Promise<Menu> {
+  const res = await fetch(
+    "https://menus.flipdish.co/prod/16798/e6220da2-c34a-4ea2-bb51-a3e190fc5f08.json",
+  );
+  return res.json();
 }
 
 export default App;
