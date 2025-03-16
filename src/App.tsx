@@ -18,41 +18,40 @@ function App() {
     <main className="flex flex-col">
       <h1 className="mb-8 text-4xl">Menu</h1>
       {isFetching && <p>Loading...</p>}
-        {data.MenuSections.map((section) => {
-          return (
-            <div className="mt-12 text-left" key={section.MenuSectionId}>
-              <h2 className="mb-6 text-xl font-semibold">{section.Name}</h2>
-              {section.MenuItems.map((item) => {
-                const standalone =
-                  item.MenuItemOptionSets.find(
-                    (option) => option.IsMasterOptionSet,
-                  );
+      {data.MenuSections.map((section) => {
+        return (
+          <div className="mt-12 text-left" key={section.MenuSectionId}>
+            <h2 className="mb-6 text-xl font-semibold">{section.Name}</h2>
+            {section.MenuItems.map((item) => {
+              const standalone = item.MenuItemOptionSets.find(
+                (option) => option.IsMasterOptionSet,
+              );
 
-                if (standalone) {
-                  return standalone.MenuItemOptionSetItems.map((option) => (
-                    <MenuItem
-                      key={option.PublicId}
-                      name={`${item.Name} (${option.Name})`}
-                      description={item.Description}
-                      price={option.Price}
-                      imageUrl={option.ImageUrl || item.ImageUrl}
-                    />
-                  ));
-                }
-
-                return (
+              if (standalone) {
+                return standalone.MenuItemOptionSetItems.map((option) => (
                   <MenuItem
-                    key={item.PublicId}
-                    name={item.Name}
+                    key={option.PublicId}
+                    name={`${item.Name} (${option.Name})`}
                     description={item.Description}
-                    price={item.Price}
-                    imageUrl={item.ImageUrl}
+                    price={option.Price}
+                    imageUrl={option.ImageUrl || item.ImageUrl}
                   />
-                );
-              })}
-            </div>
-          );
-        })}
+                ));
+              }
+
+              return (
+                <MenuItem
+                  key={item.PublicId}
+                  name={item.Name}
+                  description={item.Description}
+                  price={item.Price}
+                  imageUrl={item.ImageUrl}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
     </main>
   );
 }

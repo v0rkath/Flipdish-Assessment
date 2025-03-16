@@ -6,10 +6,7 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/vitest-setup.ts"],
     coverage: {
-      exclude: [
-        "./src/mocks/browser.ts",
-        "./src/mocks/handlers.ts",
-      ],
+      exclude: ["./src/mocks/browser.ts", "./src/mocks/handlers.ts"],
     },
   },
 });
