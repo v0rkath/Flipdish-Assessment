@@ -3,10 +3,10 @@ import "./App.css";
 import { useQuery } from "@tanstack/react-query";
 
 import { MenuItem } from "./components/MenuItem";
-import { Menu, MenuItemOptionSet } from "./types";
+import { Menu } from "./types";
 
 function App() {
-  const { isPending, error, data } = useQuery({
+  const { isPending, isFetching, error, data } = useQuery({
     queryKey: ["menuData"],
     queryFn: fetchAPIData,
   });
@@ -17,14 +17,15 @@ function App() {
   return (
     <main className="flex flex-col">
       <h1 className="mb-8 text-4xl">Menu</h1>
+      {isFetching && <p>Loading...</p>}
         {data.MenuSections.map((section) => {
           return (
             <div className="mt-12 text-left" key={section.MenuSectionId}>
               <h2 className="mb-6 text-xl font-semibold">{section.Name}</h2>
               {section.MenuItems.map((item) => {
-                const standalone: MenuItemOptionSet | undefined =
+                const standalone =
                   item.MenuItemOptionSets.find(
-                    (option: MenuItemOptionSet) => option.IsMasterOptionSet,
+                    (option) => option.IsMasterOptionSet,
                   );
 
                 if (standalone) {

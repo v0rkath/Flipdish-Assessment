@@ -3,9 +3,9 @@ export type Menu = {
   MenuVersionNumber: number;
   VersionGuid: number;
   MenuSections: MenuSection[];
-  MenuSectionBehaviour: 1;
+  MenuSectionBehaviour: number;
   DisplaySectionLinks: boolean;
-  ConcessionStores: string[]; // unsure
+  ConcessionStores: string[];
 };
 
 export type MenuSection = {
@@ -23,8 +23,8 @@ export type MenuSection = {
   CellAspectRatio: number;
   CellLayoutType: number;
   MenuSectionAvailability: MenuSectionAvailability;
-  ConcessionStoreId: string | null; // <- this might be wrong
-  MenuSectionMetadata: string[]; // this might be wrong
+  ConcessionStoreId: string | null;
+  MenuSectionMetadata: string[];
 };
 
 type MenuItem = {
@@ -39,7 +39,7 @@ type MenuItem = {
   Tags: string[];
   PublicId: string;
   IsAvailable: boolean;
-  MenuItemOptionSets: MenuItemOptionSet[]; // change this
+  MenuItemOptionSets: MenuItemOptionSet[];
   TaxRate: number | null;
   TaxRateId: number | null;
   TaxValue: number;
@@ -51,14 +51,14 @@ type MenuItem = {
   ActualPrice: number;
   DisableVouchers: boolean;
   ExcludeFromVoucherDiscounting: string;
-  DailySpecialHours: string[]; //might be wrong
+  DailySpecialHours: string[];
   PriceCanIncrease: boolean;
-  MenuItemMetadata: string[]; // could be wrong
+  MenuItemMetadata: string[];
 };
 
 type MenuSectionAvailability = {
   MenuSectionId: number;
-  Availabletimes: string | null; // could be wrong
+  Availabletimes: string | null;
   AvailabilityMode: number;
 };
 
@@ -71,14 +71,14 @@ export type MenuItemOptionSet = {
   MaxSelectCount: number;
   IsDeleted: boolean;
   PublicId: string;
-  MenuItemOptionSetItems: MenuItemOptionSetItem[]; // <- change
+  MenuItemOptionSetItems: MenuItemOptionSetItem[];
   ImageName: string | null;
   ImageUrl: string | null;
   CellAspectRatio: number;
   CellLayoutType: number;
   MinPrice: number;
   MenuItemId: number;
-  MenuItemOptionSetMetaData: string[]; // who knows
+  MenuItemOptionSetMetaData: string[];
 };
 
 type MenuItemOptionSetItem = {
@@ -92,7 +92,7 @@ type MenuItemOptionSetItem = {
   DisplayOrder: number;
   IsDeleted: boolean;
   Tags: string[];
-  NextMenuItemOptionSetId: number | null; // could be wrong
+  NextMenuItemOptionSetId: number | null;
   PublicId: string;
   ImageName: string | null;
   ImageUrl: string | null;

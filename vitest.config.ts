@@ -5,5 +5,11 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./src/vitest-setup.ts"],
+    coverage: {
+      exclude: [
+        "./src/mocks/browser.ts",
+        "./src/mocks/handlers.ts",
+      ],
+    },
   },
 });
