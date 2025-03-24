@@ -6,7 +6,7 @@ import { MenuItem } from "./components/MenuItem";
 import { Menu } from "./types";
 
 function App() {
-  const { isPending, isFetching, error, data } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ["menuData"],
     queryFn: fetchAPIData,
   });
@@ -17,7 +17,6 @@ function App() {
   return (
     <main className="flex flex-col">
       <h1 className="mb-8 text-4xl">Menu</h1>
-      {isFetching && <p>Loading...</p>}
       {data.MenuSections.map((section) => {
         return (
           <div className="mt-12 text-left" key={section.MenuSectionId}>
